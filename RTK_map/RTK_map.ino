@@ -147,6 +147,9 @@ void loop()
       float Latitude= RTK.get_Latitude();
       float Longitude = RTK.get_Longitude();
 
+      String lat_str = RTK.conv_position(Latitude); 
+      String long_str = RTK.conv_position(Longitude); 
+
       if (Firebase.ready() && (millis() - sendDataPrevMillis > 2000 || sendDataPrevMillis == 0)){ //sends of receives data every 2 seconds 
         sendDataPrevMillis = millis();
 
@@ -155,9 +158,18 @@ void loop()
         
        // Serial.printf("Set float... %s\n", Firebase.setFloat(fbdo, F("/RTK_corrected_position/latitude"+count), Latitude) ? "ok" : fbdo.errorReason().c_str()); //if we want to save every latitude position 
     
-        Serial.printf("Set float... %s\n", Firebase.setFloat(fbdo, F("/RTK_corrected_position/latitude"), Latitude) ? "ok" : fbdo.errorReason().c_str()); //if we want to simply update the position
+        //Serial.printf("Set float... %s\n", Firebase.setFloat(fbdo, F("/RTK_corrected_position/latitude"), Latitude) ? "ok" : fbdo.errorReason().c_str()); //if we want to simply update the position
 
-        Serial.printf("Set float... %s\n", Firebase.setFloat(fbdo, F("/RTK_corrected_position/longitude"), Longitude) ? "ok" : fbdo.errorReason().c_str());
+        //Serial.printf("Set float... %s\n", Firebase.setFloat(fbdo, F("/RTK_corrected_position/longitude"), Longitude) ? "ok" : fbdo.errorReason().c_str());
+
+        Serial.printf("Set float... %s\n", Firebase.setString(fbdo, F("/RTK_corrected_position/longitude"), long_str) ? "ok" : fbdo.errorReason().c_str());
+
+        Serial.printf("Set float... %s\n", Firebase.setString(fbdo, F("/RTK_corrected_position/latitude"), lat_str) ? "ok" : fbdo.errorReason().c_str());
+
+         
+
+
+        
         
       
         //For the usage of FirebaseJson, see examples/FirebaseJson/BasicUsage/Create_Edit_Parse.ino
@@ -193,7 +205,7 @@ void loop()
         //fb_esp_rtdb_data_type_boolean, fb_esp_rtdb_data_type_string, fb_esp_rtdb_data_type_json,
         //fb_esp_rtdb_data_type_array, fb_esp_rtdb_data_type_blob, and fb_esp_rtdb_data_type_file (10)
         
-        String NMEA_data = "$GNGGA,092535.00,4434.2569,N,00151.01343,E,2,12,1.93,237.8,M,48.5,M,1.0,0000*69";
+        //String NMEA_data = "$GNGGA,092535.00,4434.2569,N,00151.01343,E,2,12,1.93,237.8,M,48.5,M,1.0,0000*69";
         count++;
       }
       

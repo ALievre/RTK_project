@@ -74,6 +74,11 @@ float RTK_position::get_Longitude()
     return Longitude_conv;
 }
 
+String RTK_position::conv_position(float a ){
+  String msg = String(a,10); 
+  return msg ; 
+}
+
 float RTK_position::get_Altitude()
 {
     char *val = NULL;

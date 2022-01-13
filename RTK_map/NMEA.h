@@ -13,7 +13,7 @@ enum GNGGA {
     Longitude_p = 4,
     EW_indicator_p = 5,
     Fix_p = 6,
-    N_satellites = 7
+    N_satellites = 7,
     DOP_p = 8,
     Altitude_p = 9,
     Correction_p = 11,
@@ -47,6 +47,7 @@ public:
     float get_Correction();
     String get_UTC_Time();
     void collect_data();
+    String conv_position(float a); 
 };
 
 #endif
