@@ -13,10 +13,11 @@ enum GNGGA {
     Longitude_p = 4,
     EW_indicator_p = 5,
     Fix_p = 6,
-    DOP_p = 7,
-    Altitude_p = 8,
-    Correction_p = 10,
-    Checksum_p = 13,
+    N_satellites = 7
+    DOP_p = 8,
+    Altitude_p = 9,
+    Correction_p = 11,
+    Checksum_p = 15,
 };
 
 class RTK_position {
