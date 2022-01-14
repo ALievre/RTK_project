@@ -18,13 +18,16 @@
     <script type="module" src='map.js'></script>
     <title>Map Rover RTK</title>
     <style>
-        #map { position: absolute; top: 0; bottom: 0; left: 30%; width: 70%; }
-        #controls { position: absolute; left: 10px;}
+        #map { position: absolute; top: 0; bottom: 0; left: 30%; width: 70%;}
+        #controls { position: absolute; left: 1%; }
+        @media only screen and (max-device-width: 400px) and (orientation: portrait){ 
+            #map { position: absolute; top: 50%; bottom: 0; left: 0; width: 100%;}
+            #controls { position: absolute; left: 1%; } }
     </style>
 </head>
 
 <body>
-    <div id='controls'>
+    <div id='controls' class='w-50'>
         <h1>Base position</h1>
         <form>
             <div class="col-sm-2">
@@ -38,7 +41,9 @@
         <br>
         <button class="btn btn-outline-secondary send">Send</button>
     </div>
-    <div id='map'></div>
+    <div>
+        <div id='map' style='flex-wrap: wrap;'></div>
+    </div>
 </body>
 
 </html>
