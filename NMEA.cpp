@@ -85,13 +85,8 @@ float RTK_position::get_Altitude()
     {
         val = strtok(NULL, ",");
     }
-    float Altitude_conv = atof(val) / 100;
-    uint8_t int_part = (int)Altitude_conv;
-    Altitude_conv -= int_part;
-    Altitude_conv *= 100;
-    Altitude_conv /= 60;
-    Altitude_conv += int_part;
-
+    float Altitude_conv = atof(val);
+    
     Serial.printf("Altitude : %f\n", Altitude_conv);
 
     this->Longitude = Altitude_conv;

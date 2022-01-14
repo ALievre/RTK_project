@@ -14,7 +14,7 @@ enum GNGGA {
     EW_indicator_p = 5,
     Fix_p = 6,
     DOP_p = 7,
-    Altitude_p = 8,
+    Altitude_p = 9,
     Correction_p = 10,
     Checksum_p = 13,
 };
