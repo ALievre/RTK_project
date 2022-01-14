@@ -17,6 +17,9 @@ const database = getDatabase(firebase);
 var position = new Object();
 var longitude =0;
 var latitude =0;
+
+var base_long =0.0;
+var base_lat=0.0;
 console.log(database);
 const startCountRef = ref(database, '/RTK_corrected_position');
 onValue(startCountRef, (snapshot) => {
@@ -32,7 +35,7 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiYXNzaWFuZ3V5ZW4iLCJhIjoiY2t5ZDB2ZnkyMHVnbTJ2c
 const map = new mapboxgl.Map({
     container: 'map', // container ID
     style: 'mapbox://styles/mapbox/satellite-streets-v11', // style URL
-    center: [1.444209, 43.604652], // starting position [lng, lat]
+    center: [1.444209, 43.604652], // starting position on Toulouse[lng, lat]
     zoom: 11 // starting zoom
 });
 
@@ -52,6 +55,11 @@ map.on('load', ()=>{
         'type': 'geojson',
         'data': pointOnCircle(parseFloat(position.longitude), parseFloat(position.latitude))
     });
+
+    map.addSource('base', {
+        'type': 'geojson',
+        'data': pointOnCircle(parseFloat(base_long), parseFloat(base_lat))
+    });
     map.addLayer({
         'id' : 'rover',
         'source' : 'rover',
@@ -61,10 +69,26 @@ map.on('load', ()=>{
             'circle-color' : '#F44336' 
         }
     })
+
+    map.addLayer({
+        'id' : 'base',
+        'source' : 'base',
+        'type' : 'circle',
+        'paint' :{
+            'circle-radius' : 8,
+            'circle-color' : '#2986cc' 
+        }
+    })
     setInterval(()=>{
         map.getSource('rover').setData(pointOnCircle(longitude,latitude));
+        map.getSource('base').setData(pointOnCircle(base_long,base_lat));
     },100);
     
 
+})
+
+$(".send").on('click', ()=>{
+    base_lat = parseFloat($('.latitude-i')[0].value)
+    base_long= parseFloat($('.longitude-i')[0].value)
 })
 

@@ -150,7 +150,7 @@ void loop()
       String lat_str = RTK.conv_position(Latitude); 
       String long_str = RTK.conv_position(Longitude); 
 
-      if (Firebase.ready() && (millis() - sendDataPrevMillis > 2000 || sendDataPrevMillis == 0)){ //sends of receives data every 2 seconds 
+      if (Firebase.ready() && (millis() - sendDataPrevMillis > 500 || sendDataPrevMillis == 0)){ //sends of receives data every 2 seconds 
         sendDataPrevMillis = millis();
 
 
