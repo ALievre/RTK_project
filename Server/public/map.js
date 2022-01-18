@@ -92,3 +92,16 @@ $(".send").on('click', ()=>{
     base_long= parseFloat($('.longitude-i')[0].value)
 })
 
+$(".default").on('click', ()=>{
+    $('.latitude-i')[0].value = "43.571156"
+    $('.longitude-i')[0].value = "1.4675662"
+    base_lat = parseFloat($('.latitude-i')[0].value)
+    base_long= parseFloat($('.longitude-i')[0].value)
+})
+
+$(".erase").on('click', ()=>{
+    $('.latitude-i')[0].value = ""
+    $('.longitude-i')[0].value = ""
+    base_lat = parseFloat($('.latitude-i')[0].value)
+    base_long= parseFloat($('.longitude-i')[0].value)
+})
