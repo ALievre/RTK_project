@@ -75,7 +75,7 @@ float RTK_position::get_Longitude()
 }
 
 String RTK_position::conv_position(float a ){
-  String msg = String(a,10); 
+  String msg = String(a,20); 
   return msg ; 
 }
 
